@@ -40,7 +40,7 @@ execute "install-pip" do
   cwd Chef::Config[:file_cache_path]
   command <<-EOF
   #{node['python']['binary']} distribute_setup.py --download-base=#{node['python']['distribute_option']['download_base']}
-  #{::File.dirname(pip_binary)}/easy_install pip
+  #{::File.dirname(node['python']['binary'])}/easy_install pip
   EOF
   not_if { ::File.exists?(pip_binary) }
 end
